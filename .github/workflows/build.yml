@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
+      - name: Install PostgreSQL 12 client
+        run: |
+          sudo apt-get -yqq install libpq-dev
       - name: Setup Code Climate test-reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -42,15 +45,14 @@ jobs:
           bundle install
           bundle exec rails db:create db:migrate
       - name: Test with RSpec
-        env: 
+        env:
           PGHOST: localhost
           POSTGRES_DB: morning_pages_api_test
           POSTGRES_USER: morning_pages_api
           POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
-        run:  
-          bundle exec rspec
+        run: bundle exec rspec
       - name: Publish code coverage
         run: |
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
