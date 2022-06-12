@@ -28,16 +28,17 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-      - name: Setup test database
+      - name: Setup test database and Build
         env:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: myapp
-      - name: Build and test with RSpec
-        run: |
+        run:
           gem install bundler
           bundle install --jobs 4 --retry 3
           bundle exec rails db:create db:migrate
+      - name: Test with RSpec
+        run: |
           bundle exec rspec
       - name: Publish code coverage
         run: |
