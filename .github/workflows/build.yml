@@ -23,6 +23,7 @@ jobs:
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
+          bundle exec rails db:create db:migrate
           bundle exec rspec
       - name: Publish code coverage
         run: |
