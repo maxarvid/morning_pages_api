@@ -1,6 +1,6 @@
 RSpec.describe User, type: :model do
   describe 'Associations' do
-    it { is_expected.to have_many :morning_page }
+    it { is_expected.to have_many :morning_pages }
   end
 
   describe 'FactoryBot' do
