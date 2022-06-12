@@ -32,5 +32,9 @@ module MorningPagesApi
       generate.controller_specs false
       generate.request_specs false
     end
+
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end
