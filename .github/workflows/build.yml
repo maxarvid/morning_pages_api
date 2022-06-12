@@ -37,5 +37,5 @@ jobs:
         run: bundle exec rspec
       - name: Publish code coverage
         run: |
-          export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
+          ./cc-test-reporter format-coverage -t simplecov -o  coverage/.resultset.json
           ./cc-test-reporter after-build -r ${{secrets.CC_TEST_REPORTER_ID}}
