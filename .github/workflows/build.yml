@@ -11,12 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Install Ruby (3.0)
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 3.0.2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-ruby@v1
 
       - name: Setup Code Climate test-reporter
         run: |
