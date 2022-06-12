@@ -7,16 +7,22 @@ on:
     branches: [development]
 
 jobs:
-  build:
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_USER: morning_pages_api
+          POSTGRES_DB: morning_pages_api_test
+          POSTGRES_PASSWORD: postgres
         ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
@@ -29,11 +35,20 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          POSTGRES_DB: morning_pages_api_test
+          POSTGRES_USER: morning_pages_api
+          POSTGRES_PASSWORD: postgres
         run: |
           bundle install
           bundle exec rails db:create db:migrate
       - name: Test with RSpec
+        env: 
+          PGHOST: localhost
+          POSTGRES_DB: morning_pages_api_test
+          POSTGRES_USER: morning_pages_api
+          POSTGRES_PASSWORD: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          RAILS_ENV: test
         run:  
           bundle exec rspec
       - name: Publish code coverage
