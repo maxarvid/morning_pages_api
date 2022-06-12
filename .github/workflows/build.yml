@@ -37,4 +37,4 @@ jobs:
         run: bundle exec rspec
       - name: Publish code coverage
         run: |
-          ./cc-test-reporter format-coverage -t simplecov -d
+          ./cc-test-reporter format-coverage -t simplecov -o coverage/.resultset.json -d
