@@ -34,8 +34,6 @@ jobs:
           PGHOST: localhost
           PGUSER: myapp
         run:
-          gem install bundler
-          bundle install --jobs 4 --retry 3
           bundle exec rails db:create db:migrate
       - name: Test with RSpec
         run: |
