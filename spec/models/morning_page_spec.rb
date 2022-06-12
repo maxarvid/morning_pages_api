@@ -8,6 +8,11 @@ RSpec.describe MorningPage, type: :model do
     it { is_expected.to validate_presence_of :body }
   end
 
+  describe 'Associations' do
+    it { is_expected.to belong_to :user}
+  end
+  
+
   describe 'FactoryBot' do
     it 'is expected to have a valid Factory' do
       expect(create(:morning_page)).to be_valid
