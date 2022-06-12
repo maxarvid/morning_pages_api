@@ -35,7 +35,7 @@ jobs:
         run: bin/rails db:schema:load
       - name: Run tests
         run: bundle exec rspec
-      - name: Publish code coverage
-        run: |
-          ./cc-test-reporter format-coverage -t simplecov -o  coverage/.resultset.json
-          ./cc-test-reporter after-build -r ${{secrets.CC_TEST_REPORTER_ID}}
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
