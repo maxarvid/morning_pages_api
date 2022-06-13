@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
-  resources :morning_pages, only: [:index]
+  resources :morning_pages, only: [:index, :show]
   resources :themes, only: [:index]
 end
