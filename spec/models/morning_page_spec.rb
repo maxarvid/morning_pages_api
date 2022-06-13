@@ -9,9 +9,9 @@ RSpec.describe MorningPage, type: :model do
   end
 
   describe 'Associations' do
-    it { is_expected.to belong_to :user}
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :theme }
   end
-  
 
   describe 'FactoryBot' do
     it 'is expected to have a valid Factory' do

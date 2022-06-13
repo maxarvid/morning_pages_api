@@ -3,5 +3,6 @@ FactoryBot.define do
     title { Faker::Books::Dune.quote }
     body { Faker::Lorem.paragraph }
     user
+    theme
   end
 end
