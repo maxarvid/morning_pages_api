@@ -1,5 +1,6 @@
 describe 'GET /themes' do
   subject { response }
+  let!(:themes) { create_list(:theme, 3)}
 
   before do
     get '/themes'
