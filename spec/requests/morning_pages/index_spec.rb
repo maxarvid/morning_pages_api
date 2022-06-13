@@ -1,4 +1,4 @@
-RSpec.describe 'GET themes/morning_pages', type: :request do
+RSpec.describe 'GET /morning_pages', type: :request do
   subject { response }
   let(:user) { create(:user) }
   let(:credentials) { user.create_new_auth_token }
