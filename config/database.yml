@@ -12,8 +12,7 @@ test:
   database: morning_pages_api_test
 
 production:
-  # <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  <<: *default
   database: morning_pages_api_production
   username: morning_pages_api
   password: <%= ENV["MORNING_PAGES_API_DATABASE_PASSWORD"] %>
