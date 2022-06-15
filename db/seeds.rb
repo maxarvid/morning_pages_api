@@ -1,4 +1,4 @@
-Themes.create([{ name: 'A Sense of Safety' },
+Theme.create([{ name: 'A Sense of Safety' },
                { name: 'A Sense of Identity' },
                { name: 'A Sense of Power' },
                { name: 'A Sense of Integrity' },
