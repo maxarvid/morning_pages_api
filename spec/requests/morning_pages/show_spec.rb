@@ -23,10 +23,10 @@ describe 'GET /morning_pages/:id', type: :request do
       get "/morning_pages/#{other_morning_page.id}", headers: credentials
     end
 
-    it { is_expected.to have_http_status 401 }
+    it { is_expected.to have_http_status 404 }
 
     it 'is expected to return an error message' do
-      expect(response_json['errors'].first).to eq 'some message'
+      expect(response_json['errors'].first).to eq 'Morning page not found'
     end
   end
 

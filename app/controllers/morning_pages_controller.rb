@@ -7,7 +7,7 @@ class MorningPagesController < ApplicationController
   end
 
   def show
-    morning_page = MorningPage.find(params[:id])
+    morning_page = current_user.morning_pages.find(params[:id])
     render json: { morning_page: morning_page }
   end
 
