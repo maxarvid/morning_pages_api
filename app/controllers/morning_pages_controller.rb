@@ -1,5 +1,5 @@
 class MorningPagesController < ApplicationController
-  before_action :authenticate_user!, only: %i[index show create]
+  before_action :authenticate_user!, only: %i[index show create destroy]
 
   def index
     pages = current_user.morning_pages
@@ -14,6 +14,12 @@ class MorningPagesController < ApplicationController
   def create
     morning_page = MorningPage.create!(morning_page_params)
     render json: { morning_page: morning_page, message: 'The page was saved to the database' }, status: 201
+  end
+
+  def destroy
+    title = current_user.morning_pages.find(params[:id]).title
+    current_user.morning_pages.find(params[:id]).delete
+    render json: { morning_page: { title: title } }
   end
 
   private
