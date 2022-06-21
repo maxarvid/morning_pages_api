@@ -2,12 +2,12 @@ class MorningPagesController < ApplicationController
   before_action :authenticate_user!, only: %i[index show create]
 
   def index
-    pages = MorningPage.all
+    pages = current_user.morning_pages
     render json: { morning_pages: pages }
   end
 
   def show
-    morning_page = MorningPage.find(params[:id])
+    morning_page = current_user.morning_pages.find(params[:id])
     render json: { morning_page: morning_page }
   end
 

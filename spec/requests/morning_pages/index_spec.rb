@@ -3,6 +3,7 @@ RSpec.describe 'GET /morning_pages', type: :request do
   let(:user) { create(:user) }
   let(:credentials) { user.create_new_auth_token }
   let!(:morning_pages) { create_list(:morning_page, 3, user: user) }
+  let!(:other_morning_pages) { create_list(:morning_page, 3) }
 
   describe 'when user is authenticated' do
     before do
@@ -11,7 +12,7 @@ RSpec.describe 'GET /morning_pages', type: :request do
 
     it { is_expected.to have_http_status 200 }
 
-    it 'is expected to return all the morning pages' do
+    it 'is expected to return all the morning pages belonging to the user' do
       expect(response_json['morning_pages'].count).to eq 3
     end
   end
