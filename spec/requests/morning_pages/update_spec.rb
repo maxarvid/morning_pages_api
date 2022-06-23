@@ -39,12 +39,11 @@ describe 'PUT morning_pages/:id', type: :request do
             params: { morning_page: { title: 'This is an updated Title', body: 'This is an updated body' } },
             headers: credentials
       end
-    end
+      it { is_expected.to have_http_status 404 }
 
-    it { is_expected.to have_http_status 422 }
-
-    it 'is expected to respond with the updated resource' do
-      expect(response_json['errors'].first).to eq 'Morning page not found'
+      it 'is expected to respond with an error message' do
+        expect(response_json['errors'].first).to eq 'Morning page not found'
+      end
     end
   end
 end

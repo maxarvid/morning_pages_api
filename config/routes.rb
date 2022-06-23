@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :themes, only: [:index] do
     resources :morning_pages, only: %i[create]
   end
-  resources :morning_pages, only: %i[index show destroy]
+  resources :morning_pages, only: %i[index show update destroy]
 end
