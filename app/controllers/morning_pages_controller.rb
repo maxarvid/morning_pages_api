@@ -18,7 +18,7 @@ class MorningPagesController < ApplicationController
 
   def update
     morning_page = current_user.morning_pages.find(params[:id])
-    morning_page.update(morning_page_params)
+    morning_page.update!(morning_page_params)
     render json: { morning_page: morning_page, message: "#{morning_page.title} has been updated" }
   end
 
